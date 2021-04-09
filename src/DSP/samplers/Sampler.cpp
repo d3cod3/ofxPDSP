@@ -17,6 +17,7 @@ pdsp::Sampler::Sampler(){
         sample = nullptr;
         readIndex = 0.0f;
         direction = 1.0f;
+        isPlaying = false;
         
         positionMeter.store(0.0f);
         positionDivider = 0.001f;
@@ -34,6 +35,10 @@ pdsp::Sampler::Sampler(){
 
 float pdsp::Sampler::meter_position() const{
     return positionMeter.load();
+}
+
+bool pdsp::Sampler::is_playing() const{
+    return isPlaying;
 }
 
 pdsp::Patchable& pdsp::Sampler::in_trig(){
@@ -172,6 +177,7 @@ void pdsp::Sampler::process_audio( const float* pitchModBuffer, const float* tri
                 if(triggerAR){
                         if(checkTrigger(triggerBuffer[n])){
                                 selectSample( n, bufferSize, triggerBuffer[n] );
+                                isPlaying = true;
                         }
                 }
 
@@ -190,6 +196,7 @@ void pdsp::Sampler::process_audio( const float* pitchModBuffer, const float* tri
                         outputBuffer[n] = interpolate_smooth( x1, x2, mu );
                 }else{
                         outputBuffer[n] = 0.0f;
+                        isPlaying = false;
                 }
                 
                 readIndex += inc*direction;

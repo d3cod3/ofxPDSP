@@ -79,6 +79,8 @@ public:
     */ 
     float meter_position() const;
 
+    bool is_playing() const;
+
 private:
     void prepareUnit( int expectedBufferSize, double sampleRate) override;
     void releaseResources () override {};
@@ -105,6 +107,7 @@ private:
     SampleBuffer* sample;
     int channel;
     int sampleIndex;
+    bool isPlaying;
     
     std::vector<SampleBuffer*> samples;
     
