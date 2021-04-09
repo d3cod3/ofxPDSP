@@ -665,7 +665,10 @@ pdsp::OutputNode&  pdsp::OutputNode::setMultiplyOnConnection( float multiplier )
 
 
 float pdsp::OutputNode::getCRValue() const{
-    return buffer[0];
+    if ( buffer != nullptr ) {
+        return buffer[0];
+    }
+    return 0;
 }
 
 const float* pdsp::OutputNode::getBuffer() const {
@@ -820,7 +823,10 @@ float* pdsp::Unit::getOutputBufferToFill( OutputNode& node ) {
 
 void pdsp::Unit::setControlRateOutput( OutputNode& node, float scalarValue ) {
     node.state = Changed;
-    node.buffer[0] = scalarValue;
+    if ( node.buffer != nullptr ) {
+        node.buffer[0] = scalarValue;
+
+    }
 }
 
 void pdsp::Unit::setOutputToZero( OutputNode& node ) {
