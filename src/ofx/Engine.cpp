@@ -122,7 +122,7 @@ void pdsp::Engine::setChannels( int inputChannels, int outputChannels ){
 
 void pdsp::Engine::setup( int sampleRate, int bufferSize, int nBuffers){
  
-    ofAddListener( ofEvents().exit, this, &pdsp::Engine::onExit );
+    //ofAddListener( ofEvents().exit, this, &pdsp::Engine::onExit );
     
     ofLogNotice()<<"[pdsp] engine: starting with parameters: buffer size = "<<bufferSize<<" | sample rate = "<<sampleRate<<" | "<<inputChannels<<" inputs | "<<outputChannels<<" outputs\n";
    
