@@ -21,15 +21,10 @@ Dependencies
 ------------
 ofxPDSP requires the latest stable or master release of openFrameworks, [ofxMidi](https://github.com/danomatika/ofxMidi), [ofxAudioFile](https://github.com/npisanti/ofxAudioFile) and ofxOsc.
 
-Donate
------------- 
-I support you, you support me!    
-If you find this code useful, consider [fueling me with coffee](https://ko-fi.com/npisanti)!
-
 Examples
 ------------    
 Check out the videos of some included examples:    
-    
+
 [![ofxPDSP example-scoring4-wolfram-dub](http://img.youtube.com/vi/0-NXEFEFiE4/0.jpg)](https://www.youtube.com/watch?v=0-NXEFEFiE4 "ofxPDSP example-scoring4-wolfram-dub")
 
 [![ofxPDSP example-graincloud](http://img.youtube.com/vi/t04So5y3hrI/0.jpg)](https://www.youtube.com/watch?v=t04So5y3hrI "ofxPDSP example-graincloud")
@@ -43,6 +38,6 @@ Check out the videos of some included examples:
 [![ofxPDSP example-data-to-wave](http://img.youtube.com/vi/oMH_W4b1z5A/0.jpg)](https://www.youtube.com/watch?v=oMH_W4b1z5A "ofxPDSP example-data-to-wave")
 
 License
------------- 
+------------
 Nicola Pisanti, MIT License 2016-2018.   
 For FFT the AudioFFT wrapper is used, Copyright (c) 2013 [HiFi-LoFi](https://github.com/HiFi-LoFi).  
