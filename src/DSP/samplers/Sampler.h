@@ -102,8 +102,8 @@ private:
     InputNode input_start_mod;
     OutputNode output;
     
-    float readIndex;
-    float inc;
+    double readIndex;
+    double inc;
     SampleBuffer* sample;
     int channel;
     int sampleIndex;
@@ -111,8 +111,8 @@ private:
     
     std::vector<SampleBuffer*> samples;
     
-    float incBase;
-    float direction;
+    double incBase;
+    double direction;
     
     std::atomic<float> positionMeter;
     float positionDivider;
