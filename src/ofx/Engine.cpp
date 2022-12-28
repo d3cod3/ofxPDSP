@@ -16,7 +16,14 @@ pdsp::Engine::Engine() : score( sequencer ){
 
     state = closedState;
     
+#if defined(TARGET_WIN32)
+    api = ofSoundDevice::Api::MS_DS;
+#elif defined(TARGET_OSX)
+    api = ofSoundDevice::Api::OSX_CORE;
+#else
     api = ofSoundDevice::Api::UNSPECIFIED;
+#endif
+
 
 #ifndef __ANDROID__
     midiIns.reserve(10);
@@ -52,7 +59,7 @@ void pdsp::Engine::onExit( ofEventArgs &args ){
 }
 
 std::vector<ofSoundDevice> pdsp::Engine::listDevices(){
-    return ofSoundStreamListDevices();
+    return outputStream.getDeviceList(api);
 }
 
 void pdsp::Engine::setDeviceID(int deviceID){
@@ -139,9 +146,7 @@ void pdsp::Engine::setup( int sampleRate, int bufferSize, int nBuffers){
             outputStream.close();
         }
         
-        #ifdef TARGET_OF_IOS
-        ofSoundStreamClose();
-        #endif  
+        ofSoundStreamClose(); 
         
         ofLogNotice()<<"[pdsp] engine: changing setup, releasing resources...";
         pdsp::releaseAll();
@@ -199,9 +204,7 @@ void pdsp::Engine::setup( int sampleRate, int bufferSize, int nBuffers){
 	settings.numOutputChannels = (size_t) outputChannels;
 	settings.numInputChannels = (size_t)  inputChannels;
     
-    if( api != ofSoundDevice::Api::UNSPECIFIED ){
-        settings.setApi( api );
-    }
+    settings.setApi( api );
     
     #if defined(__ANDROID__)
         if( outputChannels > 0 ){
@@ -227,7 +230,9 @@ void pdsp::Engine::setup( int sampleRate, int bufferSize, int nBuffers){
         ofSoundStreamSetup( settings );
 
     #else
-        auto devices = outputStream.getDeviceList();
+
+
+        auto devices = outputStream.getDeviceList(api);
         
         if( outputChannels > 0 ){
             outStreamActive = true;
@@ -280,9 +285,9 @@ void pdsp::Engine::stop(){
         if( outStreamActive ){
             outputStream.stop();
         }    
-        #ifdef TARGET_OF_IOS
+
         ofSoundStreamStop();	
-        #endif    
+
         state = stoppedState;
     }
 }
@@ -316,9 +321,8 @@ void pdsp::Engine::close(){
         outputStream.close();
     }
     
-    #ifdef TARGET_OF_IOS
     ofSoundStreamClose();
-    #endif  
+
     pdsp::releaseAll();
     
     state = closedState;

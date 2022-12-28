@@ -70,7 +70,7 @@ public:
     void setChannels( int inputChannels, int outputChannels );
     
     /*!
-    @brief calls ofSoundStreamListDevices() for listing the available audio devices. 
+    @brief calls specific api available audio devices.
     */
     std::vector<ofSoundDevice> listDevices();
     
