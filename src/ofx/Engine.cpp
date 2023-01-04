@@ -21,7 +21,7 @@ pdsp::Engine::Engine() : score( sequencer ){
 #elif defined(TARGET_OSX)
     api = ofSoundDevice::Api::OSX_CORE;
 #else
-    api = ofSoundDevice::Api::UNSPECIFIED;
+    api = ofSoundDevice::Api::PULSE;
 #endif
 
 
