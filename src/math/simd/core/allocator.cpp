@@ -25,12 +25,13 @@
         
         
     void ofx_deallocate_aligned(float* &toDelete){
-
-    #if defined(_MSC_VER) || defined(__MINGW32__)
-        _aligned_free(reinterpret_cast<void*>(toDelete));
-    #else
-        free(reinterpret_cast<void*>(toDelete));
-    #endif
+        if(toDelete){
+        #if defined(_MSC_VER) || defined(__MINGW32__)
+            _aligned_free(reinterpret_cast<void*>(toDelete));
+        #else
+            free(reinterpret_cast<void*>(toDelete));
+        #endif
+        }
         toDelete = nullptr;
     }
 
