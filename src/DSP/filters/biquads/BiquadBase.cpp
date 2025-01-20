@@ -15,6 +15,10 @@ pdsp::BiquadBase::BiquadBase(){
     input_frequency.setDefaultValue(8000.0f);
     
     BiquadBase::cookCoefficients(0.0f, 0.0f, 0.0f, 0.0f);
+
+    if(dynamicConstruction){
+            prepareToPlay(globalBufferSize, globalSampleRate);
+    }
 }
 
 pdsp::Patchable& pdsp::BiquadBase::set(float freq, float Q, float gain){
