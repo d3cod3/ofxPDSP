@@ -32,7 +32,7 @@ inline_f void pdsp_trace(){
     #ifdef NDEBUG
     std::cout<<"[pdsp] build in debug mode for triggering an assert for backtracing the code line\n";
     #endif 
-    assert(false);  
+    //assert(false);
 }
 
 inline_f void wrapChannelIndex( size_t & index, size_t max=2, std::string name="this module" ){
